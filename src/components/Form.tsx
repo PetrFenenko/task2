@@ -27,7 +27,10 @@ const Form: React.FC<FormProps> = ({ initialData, noteIndex }) => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     initialData
-      ? dispatch(updateNote({ formData, noteIndex }))
+      ? () => {
+          if (!noteIndex) return;
+          dispatch(updateNote({ formData, noteIndex }));
+        }
       : dispatch(addNote(formData));
     dispatch(cancelEditing());
   };
@@ -36,6 +39,7 @@ const Form: React.FC<FormProps> = ({ initialData, noteIndex }) => {
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
     const { name: field, value } = e.target;
+
     dispatch(updateField({ field, value }));
   };
 

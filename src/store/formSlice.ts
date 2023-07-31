@@ -19,9 +19,9 @@ const formSlice = createSlice({
   reducers: {
     updateField: (
       state,
-      action: PayloadAction<{ field: keyof FormState; value: string }>
+      action: PayloadAction<{ field: string; value: string }>
     ) => {
-      state[action.payload.field] = action.payload.value;
+      state[action.payload.field as keyof FormState] = action.payload.value;
     },
     restoreInitialState: (state) => {
       state = initialState;
