@@ -79,12 +79,8 @@ const App: React.FC = () => {
 
         <Table
           headers={["Note Category", "Active", "Archived"]}
-          entries={getSummaryData(notes).map((summaryData: Summary) => (
-            <SummaryRow
-              category={summaryData.category}
-              active={summaryData.active}
-              archived={summaryData.archived}
-            />
+          entries={getSummaryData(notes).map((summaryData: Summary, key) => (
+            <SummaryRow key={key} summary={summaryData} />
           ))}
           className="summary"
         />

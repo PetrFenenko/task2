@@ -1,10 +1,15 @@
 import { Summary } from "../App";
-const SummaryRow: React.FC<Summary> = ({ category, active, archived }) => {
+interface SummaryRowProps {
+  key: number;
+  summary: Summary;
+}
+
+const SummaryRow: React.FC<SummaryRowProps> = ({ key, summary }) => {
   return (
-    <div className="entry summary">
-      <div className="entry__name">{category}</div>
-      <div>{active}</div>
-      <div>{archived}</div>
+    <div className="entry summary" key={key}>
+      <div className="entry__name">{summary.category}</div>
+      <div>{summary.active}</div>
+      <div>{summary.archived}</div>
     </div>
   );
 };

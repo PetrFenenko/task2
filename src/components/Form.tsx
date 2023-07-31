@@ -6,8 +6,8 @@ import { addNote, updateNote } from "../store/notesSlice";
 import { AppDispatch, RootState } from "../store/store";
 
 interface FormProps {
-  initialData: FormState;
-  noteIndex: number;
+  initialData?: FormState;
+  noteIndex?: number;
 }
 
 const Form: React.FC<FormProps> = ({ initialData, noteIndex }) => {

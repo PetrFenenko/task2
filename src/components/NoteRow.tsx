@@ -20,7 +20,7 @@ const NoteRow: React.FC<NoteRowProps> = ({ noteData, noteIndex }) => {
   const handleRemoveNote = () => dispatch(removeNote({ noteIndex }));
 
   return (
-    <div className="entry notes" id={`${noteIndex}`}>
+    <div className="entry notes" key={noteIndex}>
       <div className="entry__name">{noteData.name}</div>
       <div>
         {noteData.created.toLocaleDateString("en-US", {

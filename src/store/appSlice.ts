@@ -17,6 +17,8 @@ const appSlice = createSlice({
   initialState,
   reducers: {
     toggleArchivedDisplay: (state) => {
+      state.adding = false;
+      state.editedNoteIndex = false;
       state.displayArchived = !state.displayArchived;
     },
     toggleAdding: (state) => {
