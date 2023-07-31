@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { cancelEditing } from "./appSlice";
+import { cancelEditing, toggleAdding } from "./appSlice";
 
 export interface FormState {
   name: string;
@@ -27,13 +27,12 @@ const formSlice = createSlice({
         console.log(error);
       }
     },
-    restoreInitialState: (state) => {
-      state = initialState;
-    },
+    restoreInitialState: () => initialState,
   },
   // restoring initial state after ediging is done
   extraReducers: (builder) => {
-    builder.addCase(cancelEditing, (state) => (state = initialState));
+    builder.addCase(cancelEditing, () => initialState);
+    builder.addCase(toggleAdding, () => initialState);
   },
 });
 
