@@ -21,7 +21,11 @@ const formSlice = createSlice({
       state,
       action: PayloadAction<{ field: string; value: string }>
     ) => {
-      state[action.payload.field as keyof FormState] = action.payload.value;
+      try {
+        state[action.payload.field as keyof FormState] = action.payload.value;
+      } catch (error) {
+        console.log(error);
+      }
     },
     restoreInitialState: (state) => {
       state = initialState;

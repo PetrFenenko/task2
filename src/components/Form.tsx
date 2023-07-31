@@ -28,8 +28,12 @@ const Form: React.FC<FormProps> = ({ initialData, noteIndex }) => {
     e.preventDefault();
     initialData
       ? () => {
-          if (!noteIndex) return;
-          dispatch(updateNote({ formData, noteIndex }));
+          if (noteIndex)
+            try {
+              dispatch(updateNote({ formData, noteIndex }));
+            } catch (error) {
+              console.log(error);
+            }
         }
       : dispatch(addNote(formData));
     dispatch(cancelEditing());
