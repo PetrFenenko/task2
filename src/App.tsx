@@ -34,7 +34,6 @@ const App: React.FC = () => {
             "Created on",
             "Category",
             "Content",
-            "Dates",
             <HeaderButton
               displayArchived={appState.displayArchived}
               onClick={handleToggleArchivedDisplay}
