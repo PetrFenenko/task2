@@ -1,4 +1,4 @@
-import { Summary } from "../App";
+import { Summary } from "../utils/utils";
 interface SummaryRowProps {
   key: number;
   summary: Summary;
