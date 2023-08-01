@@ -1,10 +1,10 @@
 interface TableProps {
   headers: Array<string | React.ReactNode>;
-  entries: React.ReactNode[];
+  children: React.ReactNode[];
   className: string;
 }
 
-const Table: React.FC<TableProps> = ({ headers, entries, className }) => {
+const Table: React.FC<TableProps> = ({ headers, children, className }) => {
   return (
     <div className="table">
       <div className={`table-header ${className}`}>
@@ -12,7 +12,7 @@ const Table: React.FC<TableProps> = ({ headers, entries, className }) => {
           <div className="header-item">{header}</div>
         ))}
       </div>
-      {[...entries]}
+      {[...children]}
     </div>
   );
 };
