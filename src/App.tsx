@@ -40,6 +40,7 @@ const App: React.FC = () => {
             />,
           ]}
         >
+          {/* Rendering children  */}
           {notes.map(
             (entry, noteIndex) =>
               // filtering notes with the correct 'archived' status
@@ -65,6 +66,7 @@ const App: React.FC = () => {
           headers={["Note Category", "Active", "Archived"]}
           className="summary"
         >
+          {/* Rendering children  */}
           {getSummaryData(notes).map((summaryData: Summary, key) => (
             <SummaryRow key={key} summary={summaryData} />
           ))}
