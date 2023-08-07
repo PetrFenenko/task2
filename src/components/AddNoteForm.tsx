@@ -12,10 +12,15 @@ const AddNoteForm: React.FC = () => {
     appState.adding || dispatch(toggleAdding());
   };
   return (
-    <div className="add-note__container ">
+    <div className="mt-2 flex flex-col gap-[2%]">
       {appState.adding && <Form />}
-      <div className="button-container">
-        <button onClick={handleAddButtonClick}>ADD A NOTE</button>
+      <div className="flex w-full justify-end h-24 items-center">
+        <button
+          className="px-6 py-6 rounded-lg bg-neutral-400 font-bold text-white hover:text-neutral-100"
+          onClick={handleAddButtonClick}
+        >
+          ADD A NOTE
+        </button>
       </div>
     </div>
   );

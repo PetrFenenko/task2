@@ -1,7 +1,5 @@
 import React from "react";
 
-import "./App.css";
-
 import { useDispatch, useSelector } from "react-redux";
 import AddNoteForm from "./components/AddNoteForm";
 import Container from "./components/Container";
@@ -28,12 +26,13 @@ const App: React.FC = () => {
     <>
       <Container>
         <Table
-          className="notes"
+          className="grid-cols-notes"
           headers={[
             "Name",
-            "Created on",
+            "Created",
             "Category",
             "Content",
+            "Dates",
             <HeaderButton
               displayArchived={appState.displayArchived}
               onClick={handleToggleArchivedDisplay}
@@ -64,7 +63,7 @@ const App: React.FC = () => {
 
         <Table
           headers={["Note Category", "Active", "Archived"]}
-          className="summary"
+          className="grid-cols-summary"
         >
           {/* Rendering children  */}
           {getSummaryData(notes).map((summaryData: Summary, key) => (

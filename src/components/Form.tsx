@@ -10,6 +10,10 @@ interface FormProps {
   noteIndex?: number;
 }
 
+const classNames = {
+  input: " bg-transparent outline-none ",
+};
+
 const Form: React.FC<FormProps> = ({ initialData, noteIndex }) => {
   const formData = useSelector((state: RootState) => state.form);
   const dispatch = useDispatch<AppDispatch>();
@@ -23,6 +27,8 @@ const Form: React.FC<FormProps> = ({ initialData, noteIndex }) => {
       dispatch(updateField({ field: "content", value: initialData.content }));
     }
   }, []);
+
+  // defining handler functions
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -43,16 +49,18 @@ const Form: React.FC<FormProps> = ({ initialData, noteIndex }) => {
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
     const { name: field, value } = e.target;
-
     dispatch(updateField({ field, value }));
   };
 
   const handleCancel = () => dispatch(cancelEditing());
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form
+      onSubmit={handleSubmit}
+      className="bg-neutral-100 rounded-lg grid grid-cols-[33%13%39%14%] gap-[2%] h-14 items-center justify-between px-8"
+    >
       <input
-        className="entry__name"
+        className={`font-bold text-neutral-600` + classNames.input}
         type="text"
         name="name"
         id="name"
@@ -62,6 +70,7 @@ const Form: React.FC<FormProps> = ({ initialData, noteIndex }) => {
         onChange={handleChange}
       />
       <select
+        className={classNames.input}
         name="category"
         id="category"
         value={formData.category}
@@ -72,6 +81,7 @@ const Form: React.FC<FormProps> = ({ initialData, noteIndex }) => {
         <option value="Idea">Idea</option>
       </select>
       <input
+        className={classNames.input}
         type="text"
         name="content"
         id="content"
@@ -80,12 +90,19 @@ const Form: React.FC<FormProps> = ({ initialData, noteIndex }) => {
         value={formData.content}
         onChange={handleChange}
       />
-      <span className="entry__buttons">
-        <button type="submit">
-          <SubmitSVG />
+      <span className="flex items-center">
+        <button
+          type="submit"
+          className="w-6 h-6 bg-transparent opacity-50 hover:opacity-75"
+        >
+          <img src="./icons/submit.svg" alt="submit" />
         </button>
-        <button type="button" onClick={handleCancel}>
-          <CancelSVG />
+        <button
+          type="button"
+          className="w-6 h-6 bg-transparent opacity-50 hover:opacity-75"
+          onClick={handleCancel}
+        >
+          <img src="./icons/cancel.svg" alt="cancel" />
         </button>
       </span>
     </form>
@@ -93,14 +110,3 @@ const Form: React.FC<FormProps> = ({ initialData, noteIndex }) => {
 };
 
 export default Form;
-
-const CancelSVG = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
-    <path d="m249-207-42-42 231-231-231-231 42-42 231 231 231-231 42 42-231 231 231 231-42 42-231-231-231 231Z" />
-  </svg>
-);
-const SubmitSVG = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
-    <path d="M378-246 154-470l43-43 181 181 384-384 43 43-427 427Z" />
-  </svg>
-);
